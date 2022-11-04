@@ -1,0 +1,1 @@
+MCAL/INTERUPTS/test.d MCAL/INTERUPTS/test.o: ../MCAL/INTERUPTS/test.c
