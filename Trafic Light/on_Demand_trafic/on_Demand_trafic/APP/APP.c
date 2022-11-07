@@ -54,15 +54,18 @@ void App_start(void)
 			TurnLEDoff();
 			//switch car led to red and pedestrian to green
 			LED_on(LED_GREEN_PORT,LED_GREEN_PIN);
+			flag_G = 1;
 			LED_on(LED_P_RED_PORT,LED_P_RED_PIN);
 			delay_5s();
 			TurnLEDoff();
-			flag_G = 1;
 			
-			toggle_2_LEDs_5s(LED_YELLOW_PORT, LED_YELLOW_PIN,LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);
+			LED_on(LED_P_RED_PORT,LED_P_RED_PIN);
+			toggle_LED_5s(LED_YELLOW_PORT,LED_YELLOW_PIN);
+			
 			flag_Y = 1;
-			LED_off(LED_YELLOW_PORT, LED_YELLOW_PIN);
-			LED_off(LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);
+			
+			LED_off(LED_P_RED_PORT,LED_P_RED_PIN);
+			LED_off(LED_YELLOW_PORT,LED_YELLOW_PIN);
 			LED_on(LED_RED_PORT,LED_RED_PIN);
 			flag_R = 1;
 			LED_on(LED_P_GREEN_PORT,LED_P_GREEN_PIN);
@@ -124,12 +127,14 @@ ISR(EXT_INT_0)
 					
 	
 					TurnLEDoff();
-									
+					toggle_2_LEDs_5s(LED_YELLOW_PORT, LED_YELLOW_PIN,LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);
+					LED_off(LED_YELLOW_PORT, LED_YELLOW_PIN);
+					LED_off(LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);				
 					LED_on(LED_P_RED_PORT,LED_P_RED_PIN);
-				 	LED_on(LED_GREEN_PORT,LED_GREEN_PIN);
+					LED_on(LED_GREEN_PORT,LED_GREEN_PIN);
 					delay_5s();
 					LED_off(LED_P_RED_PORT,LED_P_RED_PIN);
-				 	LED_off(LED_GREEN_PORT,LED_GREEN_PIN);
+					LED_off(LED_GREEN_PORT,LED_GREEN_PIN);
 					toggle_2_LEDs_5s(LED_YELLOW_PORT, LED_YELLOW_PIN,LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);
 					LED_off(LED_YELLOW_PORT, LED_YELLOW_PIN);
 					LED_off(LED_P_YELLOW_PORT, LED_P_YELLOW_PIN);
